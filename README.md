@@ -71,9 +71,9 @@ Note: If your floppy drive is not A:, open the .ps1 file and change the $FloppyD
 ### 2. Make your Floppy Disks
 On every floppy disk you want to use, create a text file named game.txt. Inside this file, add only one of the following lines depending on the game:
 
-* For Steam: target=steam://rungameid/12345 (replace with your game ID)
-* For Epic Games: target=com.epicgames.launcher://apps/GAME_NAME?action=launch&silent=true (replace with your game ID)
-* For any file, folder, or executable: target=C:\Games\MyGame\game.exe (replace with your game or programe full path)
+* For Steam: *target=steam://rungameid/12345* (replace with your game ID)
+* For Epic Games: *target=com.epicgames.launcher://apps/GAME_NAME?action=launch&silent=true* (replace with your game ID)
+* For any file, folder, or executable: *target=C:\Games\MyGame\game.exe* (replace with your game or programe full path)
 
 ### 3. Launching the Script
 To start the background listener without having a command prompt open on your screen, double-click on StartFloppyHidden.vbs.
