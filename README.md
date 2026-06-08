@@ -63,8 +63,8 @@ This means you can now launch:
 # Installation & Setup
 
 ### 1. Prepare the Windows Scripts
-a. Download FloppyLauncher.ps1 and StartFloppyHidden.vbs from this repository.
-b. Place FloppyLauncher.ps1 at the root of your C: drive (C:\FloppyLauncher.ps1).
+a. Download [FloppyLauncher.ps1](FloppyGameLauncher/FloppyLauncher.ps1) and [StartFloppyHidden.vbs](FloppyGameLauncher/StartFloppyHidden.vbs) from the [FloppyGameLauncher](FloppyGameLauncher/) folder.
+b. Place `FloppyLauncher.ps1` at the root of your C: drive (`C:\FloppyLauncher.ps1`).
 Note: If your floppy drive is not A:, open the .ps1 file and change the $FloppyDrive = "A:" variable to your drive letter.
 
 ### 2. Make your Floppy Disks
