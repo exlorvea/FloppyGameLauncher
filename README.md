@@ -1,3 +1,4 @@
+# FloppyGameLauncher
 ```text
  ███████╗██╗      ██████╗ ██████╗ ██████╗ ██╗   ██╗ ██████╗  █████╗ ███╗   ███╗███████╗██╗      █████╗ ██╗   ██╗███╗   ██╗ ██████╗██╗  ██╗███████╗██████╗ 
  ██╔════╝██║     ██╔═══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝ ██╔══██╗████╗ ████║██╔════╝██║     ██╔══██╗██║   ██║████╗  ██║██╔════╝██║  ██║██╔════╝██╔══██╗
@@ -26,7 +27,7 @@
  ██▄▄██ ██▄██ ██▀██ ██ ██   ██     ▄▀▀▄ ▄   ██     ██▄█▄ ██▄▄  ██▀██ ██   ██  ███▄▄ 
  ██  ██ ██▄█▀ ▀███▀ ▀███▀   ██     ▀▄▄▀▀▄   ▀█████ ██ ██ ██▄▄▄ ████▀ ██   ██  ▄▄██▀ 
  ```
-#About & Credits
+# About & Credits
 
 This project is a heavily upgraded version of the concept created by Mryeester.
 
@@ -47,7 +48,7 @@ This means you can now launch:
  ██████ ██▀██ ██ ▄ ██   ██   ██     ██ ▄█▄ ██ ██▀██ ██▄█▄ ██▄█▀ ███▄▄ 
  ██  ██ ▀███▀  ▀█▀█▀    ██   ██      ▀██▀██▀  ▀███▀ ██ ██ ██ ██ ▄▄██▀
  ```
-#How It Works
+# How It Works
 
 1. A background script runs hidden on Windows and checks your floppy drive (usually A:) every 3 seconds.
 2. When you insert a floppy disk containing a game.txt file, the script extracts the target=... line.
