@@ -69,7 +69,7 @@ b. Place `FloppyLauncher.ps1` at the root of your C: drive (`C:\FloppyLauncher.p
 Note: If your floppy drive is not A:, open the .ps1 file and change the $FloppyDrive = "A:" variable to your drive letter.
 
 ### 2. Make your Floppy Disks
-On every floppy disk you want to use, create a text file named game.txt. Inside this file, add only one of the following lines depending on the game:
+On every floppy disk you want to use, create a text file named [game.txt](FloppyGameLauncher/game.txt). Inside this file, add only one of the following lines depending on the game:
 
 * For Steam: *target=steam://rungameid/12345* (replace with your game ID)
 * For Epic Games: *target=com.epicgames.launcher://apps/GAME_NAME?action=launch&silent=true* (replace with your game ID)
