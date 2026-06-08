@@ -5,25 +5,27 @@
  ██╔══╝  ██║     ██║   ██║██╔═══╝ ██╔═══╝   ╚██╔╝  ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  ██║     ██╔══██║██║   ██║██║╚██╗██║██║     ██╔══██║██╔══╝  ██╔══██╗
  ██║     ███████╗╚██████╔╝██║     ██║        ██║   ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗███████╗██║  ██║╚██████╔╝██║ ╚████║╚██████╗██║  ██║███████╗██║  ██║
  ╚═╝     ╚══════╝ ╚═════╝ ╚═╝     ╚═╝        ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+
                                                                                                                                                          
-# .-.-----------.-.
-# | |---FLOPPY--|#|
-# | |---GAME----| |
-# | |-LAUNCHER--| |
-# | |-----------| |
-# | "-----------' |
-# |  .-----.-..   |
-# |  |     | || |||
-# |  |     | || \/|
-# "--^-----^-^^---'
+ .-.-----------.-.
+ | |---FLOPPY--|#|
+ | |---GAME----| |
+ | |-LAUNCHER--| |
+ | |-----------| |
+ | "-----------' |
+ |  .-----.-..   |
+ |  |     | || |||
+ |  |     | || \/|
+ "--^-----^-^^---'
+```
  Launch Steam, Epic Games, or any local executable automatically by inserting a physical floppy disk.
 
 ---
-                                                                                
+```text                                                                                
  ▄████▄ ▄▄▄▄   ▄▄▄  ▄▄ ▄▄ ▄▄▄▄▄▄   ▄▀▀▄     ▄█████ ▄▄▄▄  ▄▄▄▄▄ ▄▄▄▄  ▄▄ ▄▄▄▄▄▄ ▄▄▄▄ 
  ██▄▄██ ██▄██ ██▀██ ██ ██   ██     ▄▀▀▄ ▄   ██     ██▄█▄ ██▄▄  ██▀██ ██   ██  ███▄▄ 
  ██  ██ ██▄█▀ ▀███▀ ▀███▀   ██     ▀▄▄▀▀▄   ▀█████ ██ ██ ██▄▄▄ ████▀ ██   ██  ▄▄██▀ 
- 
+ ```
 #About & Credits
 
 This project is a heavily upgraded version of the concept created by Mryeester.
@@ -40,10 +42,11 @@ This means you can now launch:
 * Classic Executables / Emulators / GOG (C:\path\to\game.exe)
 
 ---                                                                   
-                                                                     
+ ```text                                                                    
 ## ██  ██  ▄▄▄  ▄▄   ▄▄   ██ ▄▄▄▄▄▄   ██     ██  ▄▄▄  ▄▄▄▄  ▄▄ ▄▄  ▄▄▄▄ 
 ## ██████ ██▀██ ██ ▄ ██   ██   ██     ██ ▄█▄ ██ ██▀██ ██▄█▄ ██▄█▀ ███▄▄ 
-## ██  ██ ▀███▀  ▀█▀█▀    ██   ██      ▀██▀██▀  ▀███▀ ██ ██ ██ ██ ▄▄██▀ 
+## ██  ██ ▀███▀  ▀█▀█▀    ██   ██      ▀██▀██▀  ▀███▀ ██ ██ ██ ██ ▄▄██▀
+ ```
 #How It Works
 
 1. A background script runs hidden on Windows and checks your floppy drive (usually A:) every 3 seconds.
@@ -51,10 +54,11 @@ This means you can now launch:
 3. It launches the game instantly using the correct protocol or path, and waits until you eject the floppy disk before allowing another launch.
 
 ---
-                                                                                                              
+```text                                                                                                              
 ## ██ ▄▄  ▄▄  ▄▄▄▄ ▄▄▄▄▄▄ ▄▄▄  ▄▄    ▄▄     ▄▄▄ ▄▄▄▄▄▄ ▄▄  ▄▄▄  ▄▄  ▄▄   ▄▀▀▄     ▄█████ ▄▄▄▄▄ ▄▄▄▄▄▄ ▄▄ ▄▄ ▄▄▄▄  
 ## ██ ███▄██ ███▄▄   ██  ██▀██ ██    ██    ██▀██  ██   ██ ██▀██ ███▄██   ▄▀▀▄ ▄   ▀▀▀▄▄▄ ██▄▄    ██   ██ ██ ██▄█▀ 
-## ██ ██ ▀██ ▄▄██▀   ██  ██▀██ ██▄▄▄ ██▄▄▄ ██▀██  ██   ██ ▀███▀ ██ ▀██   ▀▄▄▀▀▄   █████▀ ██▄▄▄   ██   ▀███▀ ██   
+## ██ ██ ▀██ ▄▄██▀   ██  ██▀██ ██▄▄▄ ██▄▄▄ ██▀██  ██   ██ ▀███▀ ██ ▀██   ▀▄▄▀▀▄   █████▀ ██▄▄▄   ██   ▀███▀ ██
+ ```
 # Installation & Setup
 
 ### 1. Prepare the Windows Scripts
@@ -80,10 +84,11 @@ If you want this to work automatically every time you turn on your PC:
 2. Create a shortcut of StartFloppyHidden.vbs and paste it into that folder.
 
 ---
-                                          
+```text                                          
 ##  ██     ▄▄  ▄▄▄▄ ▄▄▄▄▄ ▄▄  ▄▄  ▄▄▄▄ ▄▄▄▄▄ 
 ##  ██     ██ ██    ██▄▄  ███▄██ ███▄▄ ██▄▄  
-##  ██████ ██ ▀████ ██▄▄▄ ██ ▀██ ▄▄██▀ ██▄▄▄                                                                
+##  ██████ ██ ▀████ ██▄▄▄ ██ ▀██ ▄▄██▀ ██▄▄▄
+ ```                                                               
 # License
 
 This project is licensed under the GNU General Public License v3.0 (GPLv3) - see the LICENSE file for details. This ensures the project stays open-source and free for all the retro-modding community!
