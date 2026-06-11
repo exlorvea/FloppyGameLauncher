@@ -29,12 +29,10 @@ while ($true) {
 
             }
             catch {
-                # Ignore les erreurs de lecture
             }
         }
     }
     else {
-        # La disquette a été retirée
         $AlreadyLaunched = $false
     }
 
