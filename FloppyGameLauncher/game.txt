@@ -1,7 +1,9 @@
 target=steam://rungameid/12345
 target=com.epicgames.launcher://apps/NOM_DU_JEU?action=launch&silent=true
 target=C:\Games\MonJeu\game.exe
+target=https://url.com
 
 ########################################################
-#  modify the one you're using and delete the others!  #
+#  modify the one you're using                         #
+#  Keep only ONE target= line and delete the others!   #
 ########################################################
