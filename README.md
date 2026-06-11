@@ -19,7 +19,8 @@
  |  |     | || \/|
  "--^-----^-^^---'
 ```
- Launch Steam, Epic Games, or any local executable automatically by inserting a physical floppy disk.
+Turn floppy disks into physical launch cartridges for modern software.
+Launch Steam, Epic Games, websites, folders, or any local executable automatically by inserting a ***physical floppy disk***.
 
 ---
 ```text                                                                                
@@ -35,13 +36,16 @@ This project is a heavily upgraded version of the concept created by Mryeester.
 * The Original Code: Mryeester shared his base script in this Google Doc (https://docs.google.com/document/d/1yg9BWe7kBFjTwTyWi0L2tFu5VSmvwbOzZkayw_Qhnw0).
 
 ### What's new in this version?
-The original script only supported launching games via Steam IDs. This improved version shifts the logic to a path/URI target system. Instead of hardcoding launcher rules, the script reads a "target=" line.
+The original version was focused on Steam game IDs. This version turns floppy disks into universal launch media capable of opening games, applications, folders, and websites.. Instead of hardcoding launcher rules, the script reads a "target=" line.
 
 This means you can now launch:
 * Steam Games (steam://...)
 * Epic Games (com.epicgames.launcher://...)
 * Classic Executables / Emulators / GOG (C:\path\to\game.exe)
-
+* Websites (https://...)
+* Local folders (C:\Games\...)
+* Any Windows application with a valid path or URI
+  
 ---                                                                   
  ```text                                                                    
  ██  ██  ▄▄▄  ▄▄   ▄▄   ██ ▄▄▄▄▄▄   ██     ██  ▄▄▄  ▄▄▄▄  ▄▄ ▄▄  ▄▄▄▄ 
@@ -73,7 +77,8 @@ On every floppy disk you want to use, create a text file named [game.txt](Floppy
 
 * For Steam: *target=steam://rungameid/12345* (replace with your game ID)
 * For Epic Games: *target=com.epicgames.launcher://apps/GAME_NAME?action=launch&silent=true* (replace with your game ID)
-* For any file, folder, or executable: *target=C:\Games\MyGame\game.exe* (replace with your game or programe full path)
+* For any file, folder, or executable: *target=C:\Games\MyGame\game.exe* (replace with the full path to your game or program)
+* For Website: *target=https://rick.nerial.uk* (replace with your URL)
 
 ### 3. Launching the Script
 To start the background listener without having a command prompt open on your screen, double-click on StartFloppyHidden.vbs.
@@ -82,9 +87,51 @@ It will silently boot the PowerShell script in the background.
 
 ### 4. Optional: Run at Windows Startup
 If you want this to work automatically every time you turn on your PC:
-1. Press Win + R, type shell:startup and hit Enter. This opens your Windows Startup folder.
-2. Create a shortcut of StartFloppyHidden.vbs and paste it into that folder.
+1. Press *Win + R*, type ***shell:startup*** and hit Enter. This opens your Windows Startup folder.
+2. Create a shortcut of [StartFloppyHidden.vbs](FloppyGameLauncher/StartFloppyHidden.vbs) and paste it into that folder.
 
+---
+```text                                                                                             
+  ██████ ▄▄ ▄▄  ▄▄▄  ▄▄   ▄▄ ▄▄▄▄  ▄▄    ▄▄▄▄▄  ▄▄▄▄ 
+  ██▄▄   ▀█▄█▀ ██▀██ ██▀▄▀██ ██▄█▀ ██    ██▄▄  ███▄▄ 
+  ██▄▄▄▄ ██ ██ ██▀██ ██   ██ ██    ██▄▄▄ ██▄▄▄ ▄▄██▀                                                  
+ ```    
+## Examples
+
+### Steam (Counter-Strike 2)
+Launches Counter-Strike 2 through Steam.
+
+```txt
+target=steam://rungameid/730
+```
+
+### Epic Games (Wolfenstein: The New Order)
+Launches Wolfenstein: The New Order through the Epic Games Launcher.
+
+```txt
+target=com.epicgames.launcher://apps/0bd3e505924240adb702295fa08c1eff%3A283080ad58e64fd084d30413888a571c%3Aa64dcf9b711a4a60a3c0b6f052dfc7da?action=launch&silent=true
+```
+
+### Local executable (DOOM)
+Launches a local game executable.
+
+```txt
+target=D:\Games\DOOM\DOOM.exe
+```
+
+### Website (Totally Serious Business, not a rickroll)
+Opens an extremely important website.
+
+```txt
+target=https://rick.nerial.uk/video.mp4
+```
+
+### Folder
+Opens a local folder.
+
+```txt
+target=C:\Games
+```
 ---
 ```text                                          
   ██     ▄▄  ▄▄▄▄ ▄▄▄▄▄ ▄▄  ▄▄  ▄▄▄▄ ▄▄▄▄▄ 
