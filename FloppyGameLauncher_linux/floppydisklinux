@@ -1,0 +1,270 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+VERSION="0.1.0"
+
+# Points de montage courants.
+# /media/floppy permet aussi un montage fixe via fstab.
+MOUNT_PATHS=(
+    "/media/floppy"
+    "/media/$USER"
+    "/run/media/$USER"
+)
+
+GAME_FILE_NAME="game.txt"
+
+
+# ------------------------------------------------------------
+# Affichage
+# ------------------------------------------------------------
+
+show_help() {
+    cat <<EOF
+FloppyGameLauncher Linux v${VERSION}
+
+Usage:
+    floppygamelauncher [OPTION]
+
+Options:
+    --launch       Force launch all targets from the inserted floppy.
+    --status       Show the detected floppy and its targets.
+    --daemon       Run FloppyGameLauncher in monitoring mode.
+    --version      Show version information.
+    --help         Show this help message.
+
+game.txt format:
+
+    # Comments are ignored.
+    target=steam://rungameid/620
+    target=https://example.org
+    target=/home/user/program
+
+Multiple target= entries are supported and launched sequentially.
+EOF
+}
+
+
+show_version() {
+    echo "FloppyGameLauncher Linux v${VERSION}"
+}
+
+
+# ------------------------------------------------------------
+# Recherche de game.txt
+# ------------------------------------------------------------
+
+find_game_file() {
+    local base
+    local result
+
+    for base in "${MOUNT_PATHS[@]}"; do
+        [[ -d "$base" ]] || continue
+
+        # Cas /media/floppy/game.txt
+        if [[ -f "$base/$GAME_FILE_NAME" ]]; then
+            printf '%s\n' "$base/$GAME_FILE_NAME"
+            return 0
+        fi
+
+        # Cas /media/user/FLOPPY/game.txt
+        result="$(
+            find "$base" \
+                -mindepth 1 \
+                -maxdepth 2 \
+                -type f \
+                -name "$GAME_FILE_NAME" \
+                -print -quit 2>/dev/null
+        )"
+
+        if [[ -n "$result" ]]; then
+            printf '%s\n' "$result"
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+
+# ------------------------------------------------------------
+# Lecture de game.txt
+# ------------------------------------------------------------
+
+read_targets() {
+    local file="$1"
+    local line
+    local target
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+
+        # Supprime un éventuel CR venant d'un fichier Windows CRLF.
+        line="${line%$'\r'}"
+
+        # Ignore lignes vides.
+        [[ "$line" =~ ^[[:space:]]*$ ]] && continue
+
+        # Ignore commentaires.
+        [[ "$line" =~ ^[[:space:]]*# ]] && continue
+
+        # Ignore tout ce qui n'est pas target=...
+        [[ "$line" =~ ^[[:space:]]*target[[:space:]]*=(.*)$ ]] || continue
+
+        target="${BASH_REMATCH[1]}"
+
+        # Retire espaces en début/fin.
+        target="${target#"${target%%[![:space:]]*}"}"
+        target="${target%"${target##*[![:space:]]}"}"
+
+        [[ -n "$target" ]] && printf '%s\n' "$target"
+
+    done < "$file"
+}
+
+
+# ------------------------------------------------------------
+# Lancement
+# ------------------------------------------------------------
+
+launch_target() {
+    local target="$1"
+
+    # URI : Steam, HTTP(S), protocoles personnalisés...
+    if [[ "$target" =~ ^[a-zA-Z][a-zA-Z0-9+.-]*:// ]]; then
+
+        echo "Launching URI: $target"
+
+        xdg-open "$target" >/dev/null 2>&1 &
+
+        return 0
+    fi
+
+
+    # Fichier exécutable
+    if [[ -f "$target" && -x "$target" ]]; then
+
+        echo "Launching executable: $target"
+
+        "$target" >/dev/null 2>&1 &
+
+        return 0
+    fi
+
+
+    # Fichier non exécutable ou dossier
+    if [[ -e "$target" ]]; then
+
+        echo "Opening: $target"
+
+        xdg-open "$target" >/dev/null 2>&1 &
+
+        return 0
+    fi
+
+
+    echo "Warning: invalid target: $target" >&2
+    return 1
+}
+
+
+launch_floppy() {
+    local game_file
+    local target
+    local found=0
+
+    if ! game_file="$(find_game_file)"; then
+        echo "No compatible floppy detected." >&2
+        return 1
+    fi
+
+    echo "Using: $game_file"
+
+    while IFS= read -r target; do
+        found=1
+        launch_target "$target" || true
+    done < <(read_targets "$game_file")
+
+    if (( found == 0 )); then
+        echo "No valid target found in game.txt." >&2
+        return 1
+    fi
+}
+
+
+# ------------------------------------------------------------
+# Status
+# ------------------------------------------------------------
+
+show_status() {
+    local game_file
+    local target
+    local count=0
+
+    if ! game_file="$(find_game_file)"; then
+        echo "Floppy: not detected"
+        return 1
+    fi
+
+    echo "Floppy: detected"
+    echo "File:   $game_file"
+    echo
+    echo "Targets:"
+
+    while IFS= read -r target; do
+        ((count++))
+        printf '  [%d] %s\n' "$count" "$target"
+    done < <(read_targets "$game_file")
+
+    if (( count == 0 )); then
+        echo "  None"
+    fi
+}
+
+
+# ------------------------------------------------------------
+# Daemon
+# ------------------------------------------------------------
+
+run_daemon() {
+    echo "Daemon mode is not implemented yet."
+    return 1
+}
+
+
+# ------------------------------------------------------------
+# CLI
+# ------------------------------------------------------------
+
+case "${1:-}" in
+
+    --launch)
+        launch_floppy
+        ;;
+
+    --status)
+        show_status
+        ;;
+
+    --daemon)
+        run_daemon
+        ;;
+
+    --version)
+        show_version
+        ;;
+
+    --help|-h)
+        show_help
+        ;;
+
+    "")
+        show_help
+        ;;
+
+    *)
+        echo "Unknown option: $1" >&2
+        echo "Use --help for usage information." >&2
+        exit 2
+        ;;
+
+esac
