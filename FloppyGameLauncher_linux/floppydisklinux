@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
+###################################
+# Not finished; work in progress. #
+###################################
 set -uo pipefail
 
 VERSION="0.1.0"
